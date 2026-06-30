@@ -144,7 +144,6 @@ class App:
         self.drawing_rays = False
         self.show_grid = False
         self.enable_magnetism = False
-        self.clear = False
         self.show_squares = True
         self.temp_obj = None
         self.current_tool = 'flat_mirror'
@@ -195,7 +194,7 @@ class App:
                     else:
                         self.ray_dot()
                 elif event.button == 2:
-                    self.clear = True
+                    self.clear()
 
             if event.type == MOUSEMOTION:
                 if self.drawing_rays:
@@ -222,6 +221,12 @@ class App:
                     self.temp_rays.clear()
                     self.ray_point = self.mouse_pos(event)
                     self.ray_dot()
+
+    def clear(self):
+        self.rays.clear()
+        self.objects.clear()
+        self.temp_rays.clear()
+        self.temp_obj = None
     
     def tool_dot(self):
         if self.not_same(self.tool_start, self.tool_end):
